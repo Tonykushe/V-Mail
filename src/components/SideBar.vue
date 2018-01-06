@@ -1,7 +1,7 @@
 <template>
   <aside class="sm-side">
     <div class="user-head">
-      <img src="src/assets/images/profile.jpg" alt="profile image">
+      <img src="../assets/images/profile.jpg" alt="profile image">
 
       <div class="user-name">
         <h5>Tony Mugendi</h5>
@@ -11,26 +11,26 @@
 
     <ul class="inbox-nav">
       <li class="active">
-        <a href="#">
-          <i class="fas fa-inbox"></i>Inbox <span class="badge badge-danger pull-right">?</span>
+        <a href="#" @click.prevent="navigate ('app-inbox', 'Inbox')">
+          <i class="fas fa-inbox"></i>Inbox <span class="badge badge-danger float-right">?</span>
         </a>
       </li>
 
        <li>
-        <a href="#">
-          <i class="fas fa-envelope"></i>Sent <span class="badge badge-secondary ">?</span>
+        <a href="#" @click.prevent="navigate ('app-sent', 'Sent')">
+          <i class="fas fa-envelope"></i>Sent <span class="badge badge-secondary float-right">?</span>
         </a>
       </li>
 
        <li>
-        <a href="#">
-          <i class="fas fa-bookmark"></i>Important <span class="badge badge-warning pull-right">?</span>
+        <a href="#" @click.prevent="navigate ('app-important', 'Important')">
+          <i class="fas fa-bookmark"></i>Important <span class="badge badge-warning float-right">?</span>
         </a>
       </li>
 
        <li>
-        <a href="#">
-          <i class="fas fa-trash"></i>Trash <span class="badge badge-secondary pull-right">?</span>
+        <a href="#" @click.prevent="navigate ('app-trash', 'Trash')">
+          <i class="fas fa-trash"></i>Trash <span class="badge badge-secondary float-right">?</span>
         </a>
       </li>
 
@@ -39,10 +39,58 @@
 </template>
 
 <<script>
+
+  import { eventBus } from '../main'
+
 export default {
-  
+  methods: {
+    navigate(newView, title) {
+      eventBus.$emit('changeView', {
+        tag: newView,
+        title: title
+      })
+    }
+  }
 }
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <style scoped>
 aside {

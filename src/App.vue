@@ -2,7 +2,8 @@
   <div id="app">
     <div class="container">
       <div class="mail-box">
-        <SideBar/>
+        <app-sidebar></app-sidebar>
+        <app-content></app-content>
       </div>
     </div>
   </div>
@@ -10,11 +11,13 @@
 
 <script>
 import SideBar from './components/SideBar'
+import Content from './components/Content'
 
 export default {
   name: 'app',
   components: {
-    SideBar
+    appSidebar: SideBar,
+    appContent: Content
   }
 }
 </script>
