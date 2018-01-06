@@ -10,25 +10,25 @@
     </div>
 
     <ul class="inbox-nav">
-      <li class="active">
+      <li :class="{ active: activeView == 'app-inbox'}">
         <a href="#" @click.prevent="navigate ('app-inbox', 'Inbox')">
           <i class="fas fa-inbox"></i>Inbox <span class="badge badge-danger float-right">?</span>
         </a>
       </li>
 
-       <li>
+       <li :class="{ active: activeView == 'app-sent'}">
         <a href="#" @click.prevent="navigate ('app-sent', 'Sent')">
           <i class="fas fa-envelope"></i>Sent <span class="badge badge-secondary float-right">?</span>
         </a>
       </li>
 
-       <li>
+       <li :class="{ active: activeView == 'app-important'}">
         <a href="#" @click.prevent="navigate ('app-important', 'Important')">
           <i class="fas fa-bookmark"></i>Important <span class="badge badge-warning float-right">?</span>
         </a>
       </li>
 
-       <li>
+       <li :class="{ active: activeView == 'app-trash'}">
         <a href="#" @click.prevent="navigate ('app-trash', 'Trash')">
           <i class="fas fa-trash"></i>Trash <span class="badge badge-secondary float-right">?</span>
         </a>
@@ -43,6 +43,19 @@
   import { eventBus } from '../main'
 
 export default {
+  created (){
+    eventBus.$on('changeView', (data) => {
+      this.activeView = data.tag
+
+    })
+  },
+
+  data (){
+    return {
+      activeView: 'app-inbox'
+    }
+  },
+
   methods: {
     navigate(newView, title) {
       eventBus.$emit('changeView', {
